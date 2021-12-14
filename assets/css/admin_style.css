@@ -78,7 +78,7 @@ html.noscroll {
     font-size: 2rem;
     color: var(--color-word);
 }
-.frames_selection .menu li a{
+.frames_selection .menu li span{
     text-decoration: none;
     padding-left: 15px;
     font-size: 1.4rem;
@@ -104,7 +104,20 @@ html.noscroll {
     padding: 10px;
     cursor: pointer;
 }
-
+.frames_button_admin{
+    float: left;   
+    padding-left: 30px;
+    padding-top: 15px;
+    cursor: pointer;
+    display: none;
+}
+.frames_button_admin button{
+    border-radius: 25px;
+    background-color: var(--color-background--);
+    padding: 8px;
+    cursor: pointer;
+    margin-left: 5px;
+}
 /* ******************************************* */
 /* ******************* DANH SÁCH SAN PHAM***************** */
 #search{
@@ -114,6 +127,7 @@ html.noscroll {
     flex-wrap: wrap; 
     background: white;
     height: 100%;
+    /* display: none; */
 }
 .frames_selection_left{
         width: 65%;
@@ -134,30 +148,26 @@ html.noscroll {
     width: 100%;
     border-collapse: collapse;
 }
-
-table, td{
-    height: 30px;
-    line-height: 30px;
-    padding: 0px 10px;
-    border: 1px solid rgba(0,0,0,0.4);
-}
-table,th{
+.frames_table table, th{
+    background-color: var(--color-three--);
     height: 35px;
     padding: 0 5px;
     border: 1px solid rgba(0,0,0,0.4);
 }
-table thead .variation{
-    background-color: var(--color-three--);
-    display: table-row;
-    vertical-align: inherit;
+.frames_table table, td{
+    height: 30px;
+    line-height: 30px;
+    padding: 0px 10px;
+    border: 1px solid rgba(0,0,0,0.4);
+    background-color: var(--color-two--);
 }
-table tbody .table-img img{
+
+.frames_table table img{
     height: 60px; 
-    width: 80px;
     margin: 5px;
 }
 
-tbody .js_button_close{
+ .js_button_close{
     color: var(--color-two--);
     cursor: pointer;
     width: 45px;
@@ -167,7 +177,7 @@ tbody .js_button_close{
     background-color: var(--color-sevent--);
 }
 
-table tbody .js_button_fix{
+ .js_button_fix{
     background-color: var(--color-six--);
     font-size: 1.2rem;
     color: var(--color-two--);
@@ -179,13 +189,11 @@ table tbody .js_button_fix{
     display: block;
 }
 
-
 .product{
     width: 35%;
     display: flex;
     flex-wrap: wrap;
     padding: 40px 40px 0px;
-    height: 800px;
 }
 .product .search_product{
     width: 100%;
@@ -214,6 +222,7 @@ table tbody .js_button_fix{
     line-height: 30px;
     border-bottom: 2px solid var(--color-one--);
     margin: 5px 0 20px 0px;
+    padding-left:8px;
 }
 .frames_form .selection{
     height: 30px;
@@ -229,7 +238,7 @@ table tbody .js_button_fix{
     padding-bottom: 20px;
 }
 .product_button .js_product_button{
-    padding: 10px 20px;
+    padding: 10px 18px;
     background-color: var(--color-three--);
     color: var(--color-two--);
     cursor: pointer;
@@ -248,6 +257,7 @@ table tbody .js_button_fix{
     color: #000;
     font-size: 1.4rem;
     cursor: pointer;
+    color:var(--color-two--);
 }
 .js_product_add:hover{
     background-color: var(--color-six--);
@@ -263,19 +273,85 @@ table tbody .js_button_fix{
 .pagination .js_page{
     width: 25px;
     height: 25px;
+    /* background-color:var(--color-three--); */
     text-decoration: none;
     text-align: center;
     line-height: 20px;
+    /* color: var(--color-two--); */
     margin-right: 10px;
     cursor: pointer;
 }
-.js_page--active {
-    background-color: var(--color-three--);
-    color: var(--color-two--);
+.js_page_active{
+     background-color:var(--color-three--); 
+     color: var(--color-two--); 
 }
 .pagination .js_page:hover{
     background-color: var(--color-six--);
     color: var(--color-two--);
+}
+/* ************************************************* */
+/* **********************manager_product******************** */
+#manager_product {
+    width: 100%;
+    flex-wrap: wrap;
+    background: white;
+    height: 100%;
+    display: none;
+}
+.frames_manager_product_content{
+    padding: 40px 40px 40px;
+    width: 100%;
+}
+.frames_manager_product{
+    border-radius: 5px;
+    border: 3px solid black;
+}
+.frames_manager_product_word{
+    text-align: center;
+    padding-top: 30px;
+}
+.frames_manager_product_table{
+    padding: 30px;
+}
+.frames_manager_product_table table{
+    width: 100%;
+    border-collapse: collapse;
+}
+.frames_manager_product table .space{
+    width: 20%;
+}
+.frames_manager_product .space p {
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    -webkit-line-clamp: 2;
+}
+.frames_manager_product_table table td img{
+    height: 60px;
+}
+#h1_handling{
+    font-size: 1.5rem;
+    text-align: center;
+}
+.frames_manager_product_button{
+    text-align: center;
+}
+.js_button_sucess{
+    color: var(--color-two--);
+    cursor: pointer;
+    display: block;
+    background-color: var(--color-sevent--);
+    padding: 3px;
+    margin: 0px auto;
+}
+.js_button_fail{
+    color: var(--color-two--);
+    cursor: pointer;
+    margin: 0px auto;
+    display: block;
+    background-color: var(--color-six--);
+    padding: 3px;
+    width: 83px;
+    margin: 5px auto 7px;
 }
 /* ************************************************** */
 /* *******************MODAL************************** */
@@ -379,8 +455,8 @@ table tbody .js_button_fix{
     margin-bottom: 10px;
     cursor: pointer;
 }
-.selection_case{
-    padding: 2px;
+.frames_modal_information .variation_infor_name .selection_case{
+    padding: 4px;
 }
 .button_file {
     text-align: center;
@@ -409,12 +485,8 @@ table tbody .js_button_fix{
     #search .frames_selection_left{
         width: 100%;
     }
-    .frames_selection_left .frames_search{
-        height: 1000px;
-    }
     .frames_search .frames_table table{
         width: 100%;
-        height: 800px;
     }
     #search .product{
     width: 100%;
@@ -424,17 +496,18 @@ table tbody .js_button_fix{
     }
     #search .product{
         width: 100%;
-        height: 500px;
     }
     #search .search_product{
         width: 48%;
-        height: 400px;
     }
 }
 @media only screen and (min-width: 601px) and (max-width: 900px){
     #main{
         display: flex;
         flex-wrap: wrap;
+    }
+    .frames_button_admin{
+        display: block;
     }
     .frames{
         display: none;
@@ -465,6 +538,9 @@ table tbody .js_button_fix{
         flex-wrap: wrap;
         width: 100%;
     }
+    .frames_button_admin{
+        display: block;
+    }
     .frames{
         display: none;
     }
@@ -490,4 +566,6 @@ table tbody .js_button_fix{
         padding: 0px !important;
     }
 }
+
+
 
