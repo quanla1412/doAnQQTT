@@ -141,6 +141,14 @@ html.noscroll {
     text-align: center;
     padding-top: 30px;
 }
+.frames_search_bar{
+    float: right;
+    padding: 12px 8px;
+}
+.frames_search_bar span{
+    font-size: 1.4rem;
+    margin-right: 5px;
+}
 .frames_search .frames_table{
     padding: 30px;
 }
@@ -149,7 +157,6 @@ html.noscroll {
     border-collapse: collapse;
 }
 .frames_table table, th{
-    background-color: var(--color-three--);
     height: 35px;
     padding: 0 5px;
     border: 1px solid rgba(0,0,0,0.4);
@@ -161,13 +168,16 @@ html.noscroll {
     border: 1px solid rgba(0,0,0,0.4);
     background-color: var(--color-two--);
 }
+table thead .variation{
+    background-color: var(--color-three--);
+}
 
-.frames_table table img{
+.frames_table table tbody img{
     height: 60px; 
     margin: 5px;
 }
 
- .js_button_close{
+tbody .js_button_close{
     color: var(--color-two--);
     cursor: pointer;
     width: 45px;
@@ -177,7 +187,7 @@ html.noscroll {
     background-color: var(--color-sevent--);
 }
 
- .js_button_fix{
+table tbody .js_button_fix{
     background-color: var(--color-six--);
     font-size: 1.2rem;
     color: var(--color-two--);
@@ -238,7 +248,7 @@ html.noscroll {
     padding-bottom: 20px;
 }
 .product_button .js_product_button{
-    padding: 10px 18px;
+    padding: 8px 18px;
     background-color: var(--color-three--);
     color: var(--color-two--);
     cursor: pointer;
@@ -296,7 +306,7 @@ html.noscroll {
     flex-wrap: wrap;
     background: white;
     height: 100%;
-    display: none;
+    /* display: none; */
 }
 .frames_manager_product_content{
     padding: 40px 40px 40px;
@@ -317,10 +327,13 @@ html.noscroll {
     width: 100%;
     border-collapse: collapse;
 }
+.frames_manager_product_table table th{
+    background-color: var(--color-three--);
+}
 .frames_manager_product table .space{
     width: 20%;
 }
-.frames_manager_product .space p {
+.frames_manager_product .space p{
     overflow: hidden; 
     text-overflow: ellipsis; 
     -webkit-line-clamp: 2;
@@ -340,7 +353,7 @@ html.noscroll {
     cursor: pointer;
     display: block;
     background-color: var(--color-sevent--);
-    padding: 3px;
+    padding: 2px;
     margin: 0px auto;
 }
 .js_button_fail{
@@ -349,7 +362,7 @@ html.noscroll {
     margin: 0px auto;
     display: block;
     background-color: var(--color-six--);
-    padding: 3px;
+    padding: 2px;
     width: 83px;
     margin: 5px auto 7px;
 }
@@ -566,6 +579,4 @@ html.noscroll {
         padding: 0px !important;
     }
 }
-
-
 
