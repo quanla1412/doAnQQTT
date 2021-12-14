@@ -23,15 +23,15 @@
                 <ul class="menu">
                     <li>
                         <i class="fas fa-home"></i>
-                        <span>TRANG CHỦ</span>
+                        <a href="../index.html">TRANG CHỦ</a>
                     </li>
                     <li>
                         <i class="ti-cup"></i>
-                        <span>SẢN PHẨM</span>
+                        <a href="">SẢN PHẨM</a>
                     </li>
                     <li>
                         <i class="ti-calendar"></i>
-                        <span>QUẢN LÍ ĐƠN HÀNG</span>
+                        <a href="">QUẢN LÍ ĐƠN HÀNG</a>
                     </li>
                 </ul>
             </div>
@@ -41,11 +41,11 @@
                     <div class="frames_button_login" onclick="logout()">
                         <button>log out</button>
                     </div>
-                </div>
-                <div class="frames_button_admin">
-                    <button>TRANG CHỦ</button>
-                    <button>SẢN PHẨM</button>
-                    <button>QUẢN LÍ ĐƠN HÀNG</button>
+                    <div class="frames_button_admin">
+                        <button>TRANG CHỦ</button>
+                        <button>SẢN PHẨM</button>
+                        <button>QUẢN LÍ ĐƠN HÀNG</button>
+                    </div>
                 </div>
                 <div id="search">
                     <div class="frames_selection_left">
@@ -53,8 +53,18 @@
                             <div class="frames_word">
                                 <h1>DANH SÁCH SẢN PHẨM</h1>
                             </div>
+                            <div class="frames_search_bar">
+                                <span>Định dạng trang</span>
+                                <select name="" id="">
+                                    <option value="">4 page</option>
+                                    <option value="" selected>8 page</option>
+                                    <option value="">10 page</option>
+                                    <option value="">12 page</option>
+                                </select>
+                            </div>
                             <div class="frames_table">
                                 <table>
+                                    <thead>
                                         <tr class="variation">
                                             <th>#ID</th>
                                             <th>ẢNH</th>
@@ -63,9 +73,11 @@
                                             <th>GIÁ</th>
                                             <th></th>
                                         </tr>
+                                    </thead>
+                                    <tbody id='productList'>
                                         <tr>
                                             <td>1</td>
-                                            <td><img src="./assets/img/unnamed.jpg" alt="">
+                                            <td class="table-img"><img src="./assets/img/unnamed.jpg" alt="">
                                             </td>
                                             <td>CÀ PHÊ SỮA ĐÁ</td>
                                             <td>CAFE</td>
@@ -77,7 +89,7 @@
                                         </tr>
                                         <tr>
                                             <td>2</td>
-                                            <td><img src="./assets/img/4902102014281.jpg" alt=""></td>
+                                            <td class="table-img"><img src="./assets/img/4902102014281.jpg" alt=""></td>
                                             <td>COCA COLA</td>
                                             <td>NƯỚC NGỌT</td>
                                             <td>10000</td>
@@ -88,7 +100,7 @@
                                         </tr>
                                         <tr>
                                             <td>3</td>
-                                            <td><img src="./assets/img/images.jfif" alt="">
+                                            <td class="table-img"><img src="./assets/img/images.jfif" alt="">
                                             </td>
                                             <td>TRÀ</td>
                                             <td>TRÀ</td>
@@ -98,6 +110,8 @@
                                                 <button class="js_button_fix">Sửa</button>
                                             </td>
                                         </tr>
+
+                                    </tbody>
                                 </table>
                                 <div id="pagination" class="pagination">
                                     <button class="js_page">1</button>
@@ -126,7 +140,7 @@
                                     <button type="button" class="js_product_button">Tìm kiếm</button>
                                 </div>
                             </form>
-                          </div>
+                        </div>
                         <div class="search_product">
                             <h1>THÊM SẢN PHẨM</h1>
                             <form action="" class="frames_form">
@@ -146,12 +160,11 @@
                                 <input type="file" id="add-img" name="add-img">
                                 <br>
                                 <button type="button" class="js_product_add" onclick="checkAndAdd()">Thêm</button>
-                            </form>
-                         </div>
+                             </form>
+                        </div>
                     </div>
                 </div>
-          </div>
-        <div id="manager_product">
+            <div id="manager_product">
                 <div class="frames_manager_product_content">
                     <div class="frames_manager_product">
                         <div class="frames_manager_product_word">
@@ -159,7 +172,8 @@
                         </div>
                         <div class="frames_manager_product_table">
                             <table>
-                                    <tr >
+                                <thead>
+                                    <tr>
                                         <th>#ID</th>
                                         <th>ẢNH</th>
                                         <th>TÊN SẢN PHẨM</th>
@@ -169,6 +183,7 @@
                                         <th>Tổng tiền</th>
                                         <th></th>
                                     </tr>
+                                </thead>
                                     <tr>
                                         <td>1</td>
                                         <td><img src="./assets/img/unnamed.jpg" alt=""></td>
@@ -188,6 +203,7 @@
                     </div>
                 </div>
             </div>
+        </div>
     </div>
     <div id="modal" class="modal">
         <div class="frames_modal">
