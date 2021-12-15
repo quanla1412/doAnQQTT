@@ -200,3 +200,8 @@ function navSP(){
     document.getElementById('search').style.display = "flex";
     document.getElementById('manager_product').style.display = "none";
 }
+
+function changeMaxShow(){
+    maxShow = document.getElementById('maxShow').value;
+    reload(1);
+}

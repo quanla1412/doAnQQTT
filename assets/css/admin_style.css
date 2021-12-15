@@ -291,7 +291,7 @@ table tbody .js_button_fix{
     margin-right: 10px;
     cursor: pointer;
 }
-.js_page_active{
+.js_page--active{
      background-color:var(--color-three--); 
      color: var(--color-two--); 
 }
