@@ -280,8 +280,11 @@ var maxShowTurnover = 8;
 function showTurnOver(){
     var totalTurnover = 0;
     var turnoverArray = JSON.parse(localStorage.getItem('historyBill'));
+    var formDate = document.getElementById('formDate').value;
+    var toDate = document.getElementById('toDate').value;
+    
 
-    for(var i=0;i<turnoverArray.length;i++){
-
-    }
+    // for(var i=0;i<turnoverArray.length;i++){
+    //     if(turnoverArray[i][date]<formDate || turnoverArray[i][date]<toDate )
+    // }
 }
