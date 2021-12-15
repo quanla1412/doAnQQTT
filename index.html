@@ -92,8 +92,29 @@
                     <div id="search_box">
                         <div class="sub_search">
                             <input oninput="search()" type="text" id="search_txt" class="search_txt" placeholder="Bạn muốn tìm gì?...">
-                            <div class="search_icon">
-                                <i class="icon_search fas fa-search"></i>
+                            <i onclick="showAdvanceSearch()" class=" angle_down fas fa-angle-down"></i>
+                            <ul id="advanceSearch" class="nav_angle_down">
+                                <li class="down1">
+                                    <span>Khoảng giá</span>
+                                    <input id="fromPrice" type="text" class="down_txt" name="" placeholder="Từ">
+                                    <span>~</span>
+                                    <input id="toPrice" type="text" class="down_txt" name="" placeholder="Đến">
+
+                                </li>
+                                <li class="down2">
+                                    <div class="list_classify">
+                                        <label for="type" class="classify">Loại</label>
+                                        <select id="advanceType" name="" id="type">
+                                            <option value="all" selected>Tất cả</option>
+                                            <option value="tea">Trà</option>
+                                            <option value="coffee">Cà phê</option>
+                                            <option value="soda">Nước ngọt</option>
+                                        </select>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="search_icon" >
+                                <i class="icon_search fas fa-search"onclick="advancedSearch()"></i>
                             </div>
                         </div> 
                     </div>   
@@ -106,6 +127,17 @@
     <div id="slider">
     <img src="./assets/img/header_slider.jpg" alt="slider">
     </div> 
+
+    <div id="content">
+        <div class="showlist">
+            <label for="list" class="format">Định dạng trang:</label>
+            <select name="" id="maxShow" onclick="changeMaxShow()">
+                <option value="4">4 cells</option>
+                <option value="8" selected>8 cells</option>
+                <option value="12">12 cells</option>
+            </select>
+        </div>
+    </div>
 
     <!--Modal_Log-->
     <div id="modal_log" class="modal_log">

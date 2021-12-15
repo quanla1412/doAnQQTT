@@ -113,6 +113,11 @@ function showProduct(cur){
     document.getElementById('productList').innerHTML = s;
 }
 
+function changeMaxShow(){
+    maxShow = parseInt(document.getElementById('maxShow').value);
+    reload(1);
+}
+
 function showPagination(){
     var s="";
     var n;
@@ -503,6 +508,7 @@ function navPage(type){
     reload(1);
 }
 
+var advancedMode = 0;
 function search(){
     var s = document.getElementById('search_txt').value;
     var temp = [];
@@ -518,5 +524,47 @@ function search(){
     }
 }
 
+function showAdvanceSearch(){
+    document.getElementById('advanceSearch').style.display = document.getElementById('advanceSearch').style.display=="block"? "none":"block";
+}
 
-
+function advancedSearch(){   
+    var fromPrice = document.getElementById('fromPrice').value;
+    var toPrice = document.getElementById('toPrice').value;
+    var fPrice=0,tPrice=999999999;
+    var type=document.getElementById('advanceType').value;
+    var s = document.getElementById('search_txt').value;
+    var temp = [];
+        if(fromPrice!=""){
+            var checkNum=1;
+            for(var i=0;i<fromPrice.length; i++){
+                if(fromPrice[i]<'0' || fromPrice[i]>'9')  checkNum=0;
+            }
+            if(checkNum==0) {
+                alert('Nhập mức giá tối thiểu chưa đúng định dạng')
+                document.getElementById('fromPrice').select();
+                document.getElementById('fromPrice').focus();
+                return;
+            } 
+            fPrice = parseInt(fromPrice);
+        }       
+        if(toPrice!=""){
+            for(var i=0;i<toPrice.length; i++){
+                if(toPrice[i]<'0' || toPrice[i]>'9')  checkNum=0;
+            }
+            if(checkNum==0) {
+                alert('Nhập mức giá tối đa chưa đúng định dạng')
+                document.getElementById('toPrice').select();
+                document.getElementById('toPrice').focus();
+                return;
+            }
+            tPrice = parseInt(toPrice);
+        }
+      
+    for(var i=0;i<productArray.length;i++){
+        if(productArray[i]['name'].indexOf(s)!=-1 && productArray[i]['price']>=fPrice && productArray[i]['price']<=tPrice
+        && (type=='all' || productArray[i]['type']==type))  temp.push(productArray[i]);
+    }
+    showArray=temp;
+    reload(1);
+}
