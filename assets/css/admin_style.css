@@ -487,7 +487,7 @@ table tbody .js_button_fix{
     flex-wrap: wrap;
     background-color: var(--color-two--);
     height: 100%;
-    /* display: none; */
+    display: none;
 }
 .frames_manager_product_turnover_content{
     padding: 40px 40px 40px;

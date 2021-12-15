@@ -11,6 +11,8 @@ window.onload = function(){
     showProduct(1);
     showPagination();
     document.getElementById('nav'+curShow).classList.add("js_page--active");
+
+    
 }
 
 function showProduct(cur){
@@ -195,24 +197,35 @@ function changePage(cur){
 function navQLDH(){
     document.getElementById('search').style.display = "none";
     document.getElementById('manager_product').style.display = "block";
-    document.getElementById('manager_product_turnover').style.display = "none";
+    document.getElementById('manager_product_turnover').style.display = "none";  
+    document.getElementById('history_product').style.display="none";
     showCurBill();
 }
 
 function navSP(){
     document.getElementById('search').style.display = "flex";
     document.getElementById('manager_product').style.display = "none";
-    document.getElementById('manager_product_turnover').style.display = "none";
+    document.getElementById('manager_product_turnover').style.display = "none";  
+    document.getElementById('history_product').style.display="none";
     productArray = JSON.parse(localStorage.getItem('product'));
     showArray = productArray;
     showProduct(1);
 }
 
+function navLSDH(){
+    document.getElementById('search').style.display = "none";
+    document.getElementById('manager_product').style.display = "none";
+    document.getElementById('manager_product_turnover').style.display = "none";
+    document.getElementById('history_product').style.display="block";
+    showHistory();
+}
+
 function navQLDT(){
     document.getElementById('manager_product').style.display = "none";
     document.getElementById('search').style.display = "none";
-    document.getElementById('manager_product_turnover').style.display = "block";
-    showTurnOver();
+    document.getElementById('manager_product_turnover').style.display = "block";    
+    document.getElementById('history_product').style.display="none";
+    showTurnOver(1);
 }
 
 function changeMaxShow(){
@@ -304,30 +317,97 @@ function getType(array,id){
     return "unknow";
 }
 
-function showTurnOver(){
+function convertTime(str){
+    var date = new Date(str);
+    return date.getDate() + "\\" + (date.getMonth()+1) + "\\" + date.getFullYear();
+}
+
+function showTurnOver(cur){
+    cur--;
     var totalTurnover = 0;
     var turnoverArray = JSON.parse(localStorage.getItem('historyBill'));
-    var formDate = document.getElementById('formDate').value;
-    var toDate = document.getElementById('toDate').value;
+    var formDate = new Date(document.getElementById('formDate').value);
+    var toDate = new Date(document.getElementById('toDate').value);
     var search = document.getElementById('turnoverSearch').value;
     var type =  document.getElementById('turnoverType').value;
 
+
     for(var i=0;i<turnoverArray.length;i++){
         var idItem = turnoverArray[i]['productId'];
-        if(turnoverArray[i]['date']<formDate || turnoverArray[i]['date']>toDate || turnoverArray[i]['name'].indexOf(search)==-1 || checkType(productArray,idItem,type)){
+        var curDate = new Date(turnoverArray[i]['date']);
+        if(curDate<formDate || curDate>toDate || turnoverArray[i]['name'].indexOf(search)==-1 || checkType(productArray,idItem,type)){
+            
             turnoverArray.splice(i--,1);
         }
     }
     var s = "";
-    for(var i=0;i<turnoverArray.length;i++){
+    for(var i=cur*maxShowTurnover;i<turnoverArray.length && i<(cur+1)*maxShowTurnover;i++){
         totalTurnover+=(turnoverArray[i]['price']/2);
         var idItem = turnoverArray[i]['productId'];
         s+="<tr><td>"+turnoverArray[i]['productId']+"</td>" +
         "<td>"+turnoverArray[i]['name']+"</td>" + 
         "<td>"+getType(productArray,idItem)+"</td>" + 
-        "<td>"+turnoverArray[i]['date']+"</td>" +
+        "<td>"+convertTime(turnoverArray[i]['date'])+"</td>" +
         "<td>"+(turnoverArray[i]['price']/2)+" VND</td></tr>";
     }
     document.getElementById('turnoverList').innerHTML = s;
     document.getElementById('totalTurnover').innerHTML=totalTurnover;
+    TOShowPag(turnoverArray.length,cur);
+    
+}
+
+function TOShowPag(lengthArray,cur){
+    var s="";
+    if(lengthArray<maxShowTurnover){
+        document.getElementById('TOpag').innerHTML=s;
+        return;
+    }
+    var n = lengthArray/maxShowTurnover;
+    if(lengthArray%maxShowTurnover!=0)  n++;
+    for(var i=1;i<=n;i++){
+        s+='<button id="TOPag'+i+'" class="js_page_product_turnover" onclick="showTurnOver('+i+')">'+i+'</button>';
+    }
+    document.getElementById('TOpag').innerHTML=s;
+    document.getElementById('TOPag' + (cur+1)).classList.add('js_page_product_turnover_active');
+}
+
+function changeMaxShowTurnover(){
+    maxShowTurnover = parseInt(document.getElementById('maxShowTurnover').value);
+    showTurnOver(1);
+}
+
+// lich su don hang
+function showHistory(){
+    var historyArray = JSON.parse(localStorage.getItem('historyBill'));
+    var formDate = new Date(document.getElementById('formDateH').value);
+    var toDate = new Date(document.getElementById('toDateH').value);
+
+    for(var i=0;i<historyArray.length;i++){
+        var curDate = new Date(historyArray[i]['date']); 
+        if(curDate<formDate || curDate>toDate){      
+            historyArray.splice(i--,1);
+            
+        }
+    }
+
+    var s="";
+    var n=0;
+    for(var i=0;i<historyArray.length;i++){
+        if(n==0){
+            n=historyArray[i]['number'];
+            s+="<tr><td rowspan="+n+">"+historyArray[i]['idBill']+"</td>" + 
+            "<td>"+historyArray[i]['name']+"</td>" +
+            "<td>"+historyArray[i]['size']+"</td>" +
+            "<td>"+historyArray[i]['quantity']+"</td>" + 
+            "<td rowspan="+n+">"+historyArray[i]['totalPrice']+" VND</td>" + 
+            "<td rowspan="+n+">"+convertTime(historyArray[i]['date'])+"</td>" +
+            "<td rowspan="+n+">"+historyArray[i]['client']+"</td></tr>";
+        } else {
+            s+="<tr><td>"+historyArray[i]['name']+"</td>" +
+            "<td>"+historyArray[i]['size']+"</td>" +
+            "<td>"+historyArray[i]['quantity']+"</td></tr>" 
+        }
+        n--;
+    }
+    document.getElementById('historyBody').innerHTML = s;
 }
