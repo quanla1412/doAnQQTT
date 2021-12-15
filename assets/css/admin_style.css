@@ -305,7 +305,7 @@ table tbody .js_button_fix{
 #manager_product {
     width: 100%;
     flex-wrap: wrap;
-    background: white;
+    background-color: var(--color-two--);;
     height: 100%;
     display: none;
 }
@@ -366,6 +366,30 @@ table tbody .js_button_fix{
     padding: 2px;
     width: 83px;
     margin: 5px auto 7px;
+}
+.pagination_two{
+    margin-bottom: 20px;
+    width: 100%;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+}
+.pagination_two .js_page_product{
+    width: 25px;
+    height: 25px;
+    text-decoration: none;
+    text-align: center;
+    line-height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.pagination_two .js_page_product_active{
+    background-color: var(--color-three--); 
+    color: var(--color-two--);
+}
+.pagination_two .js_page_product:hover{
+    background-color: var(--color-six--);
+    color: var(--color-two--);
 }
 /* ************************************************** */
 /* *******************MODAL************************** */
