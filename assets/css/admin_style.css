@@ -306,7 +306,7 @@ table tbody .js_button_fix{
     flex-wrap: wrap;
     background: white;
     height: 100%;
-    /* display: none; */
+    display: none;
 }
 .frames_manager_product_content{
     padding: 40px 40px 40px;

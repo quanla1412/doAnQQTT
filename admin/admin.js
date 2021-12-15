@@ -190,3 +190,13 @@ function changePage(cur){
     document.getElementById('nav'+curShow).classList.remove("js_page--active");
     showProduct(cur);
 }
+
+function navQLDH(){
+    document.getElementById('search').style.display = "none";
+    document.getElementById('manager_product').style.display = "block";
+}
+
+function navSP(){
+    document.getElementById('search').style.display = "flex";
+    document.getElementById('manager_product').style.display = "none";
+}
