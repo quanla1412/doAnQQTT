@@ -229,8 +229,8 @@ function showCurBill(){
             "<td><p>"+billArray[i]['comment']+"</p></td>" +
             "<td>"+billArray[i]['quantity']+"</td>" +
             "<td rowspan="+n+">"+billArray[i]['totalPrice']+" VND</td>" + 
-            "<td rowspan="+n+"><h1 id='h1_handling'>Đang xử lí</h1><button class='js_button_sucess'>Hoàn Thành</button>" + 
-            "<button class='js_button_fail'>Hủy</button></td></tr>";
+            "<td rowspan="+n+"><h1 id='h1_handling'>Đang xử lí</h1><button type='button'class='js_button_sucess' onclick='addHistoryBill("+billArray[i]['idBill']+")'>Hoàn Thành</button>" + 
+            "<button type='button' class='js_button_fail' onclick='deleteBill("+billArray[i]['idBill']+")'>Hủy</button></td></tr>";
         } else {
             s+="<tr><td>"+billArray[i]['name']+"</td>" + 
             "<td>"+billArray[i]['size']+"</td>" + 
@@ -240,4 +240,36 @@ function showCurBill(){
         n--;
     }
     document.getElementById('bill-manager').innerHTML = s;
+}
+
+function deleteBill(bill){
+    var billArray = JSON.parse(localStorage.getItem('bill'));
+    var check = confirm('Bạn chắc chắn muốn xóa đơn hàng mã ' + bill);
+    if(check==false)    return ;
+
+    for(var i=0;i<billArray.length;i++){
+        if(bill==billArray[i]['idBill']){
+            billArray.splice(i,billArray[i]['number']);
+            break;
+        }
+    }
+    localStorage.setItem('bill',JSON.stringify(billArray));
+    showCurBill();
+}
+
+function addHistoryBill(bill){    
+    var billArray = JSON.parse(localStorage.getItem('bill'));
+    var historyArray = JSON.parse(localStorage.getItem('historyBill'));
+    var check = confirm('Bạn đã hoàn thành đơn hàng mã ' + bill);
+    if(check==false)    return ;
+
+    for(var i=0;i<billArray.length;i++){
+        if(bill==billArray[i]['idBill']){
+            historyArray += billArray.splice(i,billArray[i]['number']);
+            break;
+        }
+    }
+    localStorage.setItem('bill',JSON.stringify(billArray));
+    localStorage.setItem('historyBill',JSON.stringify(historyArray));
+    showCurBill();
 }
