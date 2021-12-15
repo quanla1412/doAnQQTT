@@ -195,6 +195,7 @@ function changePage(cur){
 function navQLDH(){
     document.getElementById('search').style.display = "none";
     document.getElementById('manager_product').style.display = "block";
+    showCurBill();
 }
 
 function navSP(){
@@ -208,4 +209,35 @@ function navSP(){
 function changeMaxShow(){
     maxShow = document.getElementById('maxShow').value;
     reload(1);
+}
+
+// Quan ly hoa don
+function showCurBill(){
+    //Lay san pham
+    if(localStorage.getItem('bill')===null) return;
+    var billArray = JSON.parse(localStorage.getItem('bill'));
+
+    //Show hoa don
+    var s = "";
+    var n = 0;
+    for(var i=0;i<billArray.length;i++){
+        if(n==0){
+            n = billArray[i]['number'];
+            s+="<tr><td rowspan="+n+">"+billArray[i]['idBill']+"</td>" + 
+            "<td>"+billArray[i]['name']+"</td>"+
+            "<td>"+billArray[i]['size']+"</td>"+
+            "<td><p>"+billArray[i]['comment']+"</p></td>" +
+            "<td>"+billArray[i]['quantity']+"</td>" +
+            "<td rowspan="+n+">"+billArray[i]['totalPrice']+" VND</td>" + 
+            "<td rowspan="+n+"><h1 id='h1_handling'>Đang xử lí</h1><button class='js_button_sucess'>Hoàn Thành</button>" + 
+            "<button class='js_button_fail'>Hủy</button></td></tr>";
+        } else {
+            s+="<tr><td>"+billArray[i]['name']+"</td>" + 
+            "<td>"+billArray[i]['size']+"</td>" + 
+            "<td class='space'><p>"+billArray[i]['comment']+"</p></td>"+
+            "<td>"+billArray[i]['quantity']+"</td></tr>";
+        }
+        n--;
+    }
+    document.getElementById('bill-manager').innerHTML = s;
 }
