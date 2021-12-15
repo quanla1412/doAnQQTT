@@ -426,24 +426,35 @@ table tbody .js_button_fix{
     text-align: center;
     padding-top: 30px;
 }
+.frames_manager_product_turnover_search_content{
+    padding: 20px 0px 0px 25px;
+}
 .frames__manager_product_turnover_search_bar{
     float: right;
-    padding: 12px 32px;
+    padding-bottom: 12px;
+    padding-right: 25px;
 }
 .frames__manager_product_turnover_search_bar span{
     font-size: 1.4rem;
     margin-right: 5px;
 }
 .frames__manager_product_turnover_search_month{
-    float: right;
-    padding: 12px 32px;
+    padding-bottom: 12px;
+    clear: right;
 }
 .frames__manager_product_turnover_search_month span{
     font-size: 1.4rem;
     margin-right: 5px;
 }
+.frames_manager_product_turnover_search_product{
+    padding-bottom: 12px;
+}
+.frames_manager_product_turnover_search_product span{
+    font-size: 1.4rem;
+    margin-right: 5px;
+}
 .frames_manager_product_turnover_table{
-    padding: 30px;
+    padding: 25px;
 }
 .frames_manager_product_turnover_table table{
     width: 100%;
