@@ -425,6 +425,18 @@ table tbody .js_button_fix{
     text-align: center;
     padding-top: 30px;
 }
+.frames_history_product_word{
+    text-align: center;
+    padding-top: 30px;
+}
+.frames__history_product_month{
+    float: right;
+    padding: 20px 25px 20px 0;
+}
+.frames__history_product_month span{
+    font-size: 1.4rem;
+    margin-right: 5px;
+}
 .frames_history_product_table{
     padding: 25px;
 }
