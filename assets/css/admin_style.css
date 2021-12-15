@@ -406,6 +406,69 @@ table tbody .js_button_fix{
     color: var(--color-two--);
 }
 /* ************************************************** */
+/* *********************history_product************ */
+#history_product{
+    width: 100%;
+    flex-wrap: wrap;
+    background-color: var(--color-two--);
+    height: 100%;
+}
+.frames_history_product_content{
+    padding: 40px 40px 40px;
+    width: 100%;
+}
+.frames_history_product{
+    border-radius: 5px;
+    border: 3px solid black;
+}
+.frames_history_product_word{
+    text-align: center;
+    padding-top: 30px;
+}
+.frames_history_product_table{
+    padding: 25px;
+}
+.frames_history_product_table table{
+    width: 100%;
+    border-collapse: collapse;
+}
+.frames_history_product_table table, th{
+    height: 35px;
+    border: 1px solid rgba(0,0,0,0.4);
+    background-color: var(--color-three--);
+}
+.frames_history_product_table table, td{
+    height: 30px;
+    line-height: 30px;
+    padding: 0px 10px;
+    border: 1px solid rgba(0,0,0,0.4);
+    background-color: var(--color-two--);
+}
+.pagination_four{
+    margin-bottom: 20px;
+    width: 100%;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+}
+.pagination_four .js_history_product{
+    width: 25px;
+    height: 25px;
+    text-decoration: none;
+    text-align: center;
+    line-height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.pagination_four .js_history_product_active{
+    background-color: var(--color-three--); 
+    color: var(--color-two--);
+}
+.pagination_four .js_history_product:hover{
+    background-color: var(--color-six--);
+    color: var(--color-two--);
+}
+/* ************************************************** */
 /* **************manager_product_turnover************ */
 #manager_product_turnover{
     width: 100%;
