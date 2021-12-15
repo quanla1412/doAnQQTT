@@ -1,5 +1,6 @@
 var productArray = [];
 var showArray =[];
+var handlingArray =[];
 var maxShow = 8;
 var curShow =1;
 var editNow;
@@ -199,6 +200,9 @@ function navQLDH(){
 function navSP(){
     document.getElementById('search').style.display = "flex";
     document.getElementById('manager_product').style.display = "none";
+    productArray = JSON.parse(localStorage.getItem('product'));
+    showArray = productArray;
+    showProduct(1);
 }
 
 function changeMaxShow(){

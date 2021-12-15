@@ -420,12 +420,21 @@ function successOrder() {
     var check = confirm("Bạn có chắc chắn đặt hàng không?")
     if(check==false)    return;            
     var productCartList = JSON.parse(localStorage.getItem('cart'));
+
+    if(localStorage.getItem('handlingBill')===null) {
+        localStorage.setItem('handlingBill',JSON.stringify(productCartList));
+    } else {
+        productCartList += JSON.parse(localStorage.getItem('handlingBill'));
+        localStorage.setItem('handlingBill',JSON.stringify(productCartList));
+    }
+
     productCartList=[];    
     localStorage.setItem('cart',JSON.stringify(productCartList));
     loadCart();
     alert('Đặt hàng thành công');
     document.getElementById('addressCart').value="";
     document.getElementById('total-price').innerHTML = "0 VNĐ";
+    
 }
 
 function navBuy() {
