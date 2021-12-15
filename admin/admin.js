@@ -273,3 +273,15 @@ function addHistoryBill(bill){
     localStorage.setItem('historyBill',JSON.stringify(historyArray));
     showCurBill();
 }
+
+
+//Quan ly doanh thu
+var maxShowTurnover = 8;
+function showTurnOver(){
+    var totalTurnover = 0;
+    var turnoverArray = JSON.parse(localStorage.getItem('historyBill'));
+
+    for(var i=0;i<turnoverArray.length;i++){
+
+    }
+}

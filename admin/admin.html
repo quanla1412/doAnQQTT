@@ -34,7 +34,7 @@
                         <span>QUẢN LÍ ĐƠN HÀNG</span>
                     </li>
                     <li>
-                        <i class="ti-calendar"></i>
+                        <i class="fas fa-money-bill-wave"></i>
                         <span>QUẢN LÍ DOANH THU</span>
                     </li>
                 </ul>
@@ -231,16 +231,16 @@
                             </div>
                             <div class="frames__manager_product_turnover_search_month">
                                     <span>Từ ngày</span>
-                                    <input type="date" value="2021-12-12">
+                                    <input type="date" id="formDate">
                                     <span class="margin_product">Đến Ngày</span>
-                                    <input type="date" value="2021-12-14">
+                                    <input type="date" id="toDate">
                             </div>
                             <div class="frames_manager_product_turnover_search_product">
                                     <span>Tìm kiếm</span>
                                     <input type="text">
                                     <span class="margin_product">Phân loại</span>
                                     <select name="" id="">
-                                        <option value="">TYPE</option>
+                                        <option value="">ALL</option>
                                         <option value="" >CÀ PHÊ</option>
                                         <option value="">NƯỚC NGỌT</option>
                                         <option value="">TEA</option>
@@ -253,8 +253,8 @@
                                     <tr>
                                         <th class="space_one">#ID</th> 
                                         <th class="space_two">TÊN SẢN PHẨM</th>
-                                        <th class="space_one">Size</th>
-                                        <th class="space_two">ngày</th>
+                                        <th class="space_one">LOẠI</th>
+                                        <th class="space_two">NGÀY</th>
                                         <th class="space_two">DOANH THU</th>
                                     </tr>
                                 </thead>
@@ -262,7 +262,7 @@
                                     <tr>
                                         <td>1</td>
                                         <td>CÀ PHÊ SỮA ĐÁ</td>
-                                        <td>L</td>
+                                        <td>coffee</td>
                                         <td>10/12/2021</td>
                                         <td>10000000 VND</td>   
                                     </tr>
