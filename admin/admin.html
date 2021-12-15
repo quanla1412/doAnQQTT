@@ -172,7 +172,7 @@
                 <div class="frames_manager_product_content">
                     <div class="frames_manager_product">
                         <div class="frames_manager_product_word">
-                            <h1>DANH SÁCH SẢN PHẨM</h1>
+                            <h1>QUẢN LÍ SẢN PHẨM</h1>
                         </div>
                         <div class="frames__manager_product_search_bar">
                             <span>Định dạng trang</span>
@@ -188,18 +188,28 @@
                                 <thead>
                                     <tr>
                                         <th>#ID</th>
-                                        <th>ẢNH</th>
                                         <th>TÊN SẢN PHẨM</th>
                                         <th>Size</th>
-                                        <th>Ghi chú</th>
+                                        <th class="space_two">Ghi chú</th>
                                         <th>Số lượng</th>
                                         <th>Tổng tiền</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                     <tr>
-                                        <td>1</td>
-                                        <td><img src="./assets/img/unnamed.jpg" alt=""></td>
+                                        <td rowspan="2">1</td>
+                                        <td>CÀ PHÊ SỮA ĐÁ</td>
+                                        <td>L</td>
+                                        <td><p>akfjakfka</p></td>
+                                        <td>1000</td>
+                                        <td>10000000 VND</td>
+                                        <td>
+                                            <h1 id="h1_handling">Đang xử lí</h1>
+                                            <button class="js_button_sucess">Hoàn Thành</button>
+                                            <button class="js_button_fail">Hủy</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td>CÀ PHÊ SỮA ĐÁ</td>
                                         <td>L</td>
                                         <td class="space"><p>akfjakfka</p></td>
@@ -219,6 +229,58 @@
                             <button class="js_page_product">3</button>
                             <button class="js_page_product">4</button>
                             <button class="js_page_product">5</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="manager_product_turnover">
+                <div class="frames_manager_product_turnover_content">
+                    <div class="frames_manager_product_turnover">
+                        <div class="frames_manager_product_turnover_word">
+                            <h1>QUẢN LÍ DOANH THU</h1>
+                        </div>
+                        <div class="frames__manager_product_turnover_search_bar">
+                            <span>Định dạng trang</span>
+                            <select name="" id="">
+                                <option value="">4 Sản Phẩm</option>
+                                <option value="" selected>8 Sản Phẩm</option>
+                                <option value="">10 Sản Phẩm</option>
+                                <option value="">12 Sản Phẩm</option>
+                            </select>
+                        </div>
+                        <div class="frames__manager_product_turnover_search_month">
+                            <span>định dạng ngày tháng</span>
+                            <input type="date" value="2021-12-13">
+                        </div>
+                        <div class="frames_manager_product_turnover_table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th class="space_one">#ID</th> 
+                                        <th class="space_two">TÊN SẢN PHẨM</th>
+                                        <th class="space_one">Size</th>
+                                        <th class="space_two">ngày</th>
+                                        <th class="space_two">DOANH THU</th>
+                                    </tr>
+                                </thead>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>CÀ PHÊ SỮA ĐÁ</td>
+                                        <td>L</td>
+                                        <td>10/12/2021</td>
+                                        <td>10000000 VND</td>   
+                                    </tr>
+                            </table>
+                            <div class="frames_manager_product_turnover_total">
+                                <h1>Tổng tiền là :<span>10000000 vnd</span></h1>
+                            </div>
+                        </div>
+                        <div class="pagination_three">
+                            <button class="js_page_product_turnover js_page_product_turnover_active">1</button>
+                            <button class="js_page_product_turnover">2</button>
+                            <button class="js_page_product_turnover">3</button>
+                            <button class="js_page_product_turnover">4</button>
+                            <button class="js_page_product_turnover">5</button>
                         </div>
                     </div>
                 </div>
