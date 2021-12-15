@@ -8,6 +8,8 @@ var quantity=1;
 var size=1;
 var statusUser="none";
 var curType="all";
+var nameUser; 
+var totalPrice=0;
 
 
 function createProduct(){
@@ -53,7 +55,7 @@ window.onload = function(){
 
     loadAccount();
     var curUser = JSON.parse(localStorage.getItem('status'))['type'];
-    var nameUser = JSON.parse(localStorage.getItem('status'))['username'];
+    nameUser = JSON.parse(localStorage.getItem('status'))['username'];
     changeHeader(curUser, nameUser);
 
     loadCart();
@@ -334,7 +336,7 @@ function showCart(){
 function loadCart() {
     var productCartList = JSON.parse(localStorage.getItem('cart'));
     var s = "";
-    var sum=0;
+    totalPrice=0;
     if(localStorage.getItem('cart')!==null){
         for(var i=0;i<productCartList.length;i++){
             var cartId = productCartList[i]['id'];
@@ -343,7 +345,7 @@ function loadCart() {
             else if(productCartList[i]["size"]==2)   sizeChar = "M";
             else if(productCartList[i]["size"]==3)   sizeChar = "L";
     
-            sum+=productCartList[i]['price'];
+            totalPrice+=productCartList[i]['price'];
             
             s+='<!-- One item --><div class="sub-item">' + 
                 '<div class="item-image"><img class="item-img" src="'+productArray[cartId]["img"]+'" alt="'+productArray[cartId]["type"]+'"></div>' +
@@ -358,7 +360,7 @@ function loadCart() {
         }
     }
     document.getElementById('cartList').innerHTML = s;
-    document.getElementById('total-price').innerHTML = sum + "VNĐ";
+    document.getElementById('total-price').innerHTML = totalPrice + "VNĐ";
 }
 
 function incQuanCart(cur) {
@@ -421,12 +423,21 @@ function successOrder() {
     if(check==false)    return;            
     var productCartList = JSON.parse(localStorage.getItem('cart'));
 
-    if(localStorage.getItem('handlingBill')===null) {
-        localStorage.setItem('handlingBill',JSON.stringify(productCartList));
-    } else {
-        productCartList += JSON.parse(localStorage.getItem('handlingBill'));
-        localStorage.setItem('handlingBill',JSON.stringify(productCartList));
+    //Xu ly
+    var billArray = [];
+    var idBill = 1;
+    if(localStorage.getItem('bill')!==null && localStorage.getItem('bill')!=null){
+        var billArray = JSON.parse(localStorage.getItem('bill'));
+        idBill = [billArray.length-1]['idBill']+1;
+    } 
+    for(var i=0;i<productCartList.length;i++){
+        billArray.push({
+            idBill : idBill, productId : productCartList[i]['cur'], name:  productCartList[i]['name'], size: productCartList[i]['size'],
+            quantity: productCartList[i]['quantity'], price: productCartList[i]['price'], comment: productCartList[i]['comment'], 
+            date: Date.now(), client: nameUser, address: document.getElementById('addressCart').value, totalPrice: totalPrice, status: False
+        });
     }
+    localStorage.setItem('bill',JSON.stringify(billArray));
 
     productCartList=[];    
     localStorage.setItem('cart',JSON.stringify(productCartList));
@@ -434,6 +445,7 @@ function successOrder() {
     alert('Đặt hàng thành công');
     document.getElementById('addressCart').value="";
     document.getElementById('total-price').innerHTML = "0 VNĐ";
+    totalPrice =0;
     
 }
 
