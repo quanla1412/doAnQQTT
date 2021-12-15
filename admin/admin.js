@@ -195,15 +195,24 @@ function changePage(cur){
 function navQLDH(){
     document.getElementById('search').style.display = "none";
     document.getElementById('manager_product').style.display = "block";
+    document.getElementById('manager_product_turnover').style.display = "none";
     showCurBill();
 }
 
 function navSP(){
     document.getElementById('search').style.display = "flex";
     document.getElementById('manager_product').style.display = "none";
+    document.getElementById('manager_product_turnover').style.display = "none";
     productArray = JSON.parse(localStorage.getItem('product'));
     showArray = productArray;
     showProduct(1);
+}
+
+function navQLDT(){
+    document.getElementById('manager_product').style.display = "none";
+    document.getElementById('search').style.display = "none";
+    document.getElementById('manager_product_turnover').style.display = "block";
+    showTurnOver();
 }
 
 function changeMaxShow(){
@@ -277,14 +286,48 @@ function addHistoryBill(bill){
 
 //Quan ly doanh thu
 var maxShowTurnover = 8;
+function compareDate(a,b){
+    return a['date']>b['date'];
+}
+
+function checkType(array,id,type){
+    for(var i=0;i<array.length;i++){
+        if(array[i]['id']==id)  return type!='all' && productArray[i]['type']!=type;
+    }
+    return true;
+}
+
+function getType(array,id){
+    for(var i=0;i<array.length;i++){
+        if(array[i]['id']==id)  return array[i]['type'];
+    }
+    return "unknow";
+}
+
 function showTurnOver(){
     var totalTurnover = 0;
     var turnoverArray = JSON.parse(localStorage.getItem('historyBill'));
     var formDate = document.getElementById('formDate').value;
     var toDate = document.getElementById('toDate').value;
-    
+    var search = document.getElementById('turnoverSearch').value;
+    var type =  document.getElementById('turnoverType').value;
 
-    // for(var i=0;i<turnoverArray.length;i++){
-    //     if(turnoverArray[i][date]<formDate || turnoverArray[i][date]<toDate )
-    // }
+    for(var i=0;i<turnoverArray.length;i++){
+        var idItem = turnoverArray[i]['productId'];
+        if(turnoverArray[i]['date']<formDate || turnoverArray[i]['date']>toDate || turnoverArray[i]['name'].indexOf(search)==-1 || checkType(productArray,idItem,type)){
+            turnoverArray.splice(i--,1);
+        }
+    }
+    var s = "";
+    for(var i=0;i<turnoverArray.length;i++){
+        totalTurnover+=(turnoverArray[i]['price']/2);
+        var idItem = turnoverArray[i]['productId'];
+        s+="<tr><td>"+turnoverArray[i]['productId']+"</td>" +
+        "<td>"+turnoverArray[i]['name']+"</td>" + 
+        "<td>"+getType(productArray,idItem)+"</td>" + 
+        "<td>"+turnoverArray[i]['date']+"</td>" +
+        "<td>"+(turnoverArray[i]['price']/2)+" VND</td></tr>";
+    }
+    document.getElementById('turnoverList').innerHTML = s;
+    document.getElementById('totalTurnover').innerHTML=totalTurnover;
 }

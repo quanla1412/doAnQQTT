@@ -37,7 +37,7 @@
                         <i class="fas fa-history"></i>
                         <span>LỊCH SỬ ĐƠN HÀNG</span>
                     </li>
-                    <li>
+                    <li onclick="navQLDT()">
                         <i class="fas fa-money-bill-wave"></i>
                         <span>QUẢN LÍ DOANH THU</span>
                     </li>
@@ -289,13 +289,13 @@
                             </div>
                             <div class="frames_manager_product_turnover_search_product">
                                     <span>Tìm kiếm</span>
-                                    <input type="text">
+                                    <input type="text" id="turnoverSearch">
                                     <span class="margin_product">Phân loại</span>
-                                    <select name="" id="">
-                                        <option value="">ALL</option>
-                                        <option value="" >CÀ PHÊ</option>
-                                        <option value="">NƯỚC NGỌT</option>
-                                        <option value="">TEA</option>
+                                    <select name="" id="turnoverType">
+                                        <option value="all">ALL</option>
+                                        <option value="coffee" >CÀ PHÊ</option>
+                                        <option value="soda">NƯỚC NGỌT</option>
+                                        <option value="tea">TEA</option>
                                     </select>
                             </div>
                         </div>
@@ -310,7 +310,7 @@
                                         <th class="space_two">DOANH THU</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="turnoverList">
                                     <tr>
                                         <td>1</td>
                                         <td>CÀ PHÊ SỮA ĐÁ</td>
@@ -321,7 +321,7 @@
                                  </tbody>
                             </table>
                             <div class="frames_manager_product_turnover_total">
-                                <h1>Tổng tiền là :<span>10000000 vnd</span></h1>
+                                <h1>Tổng tiền là :<span id="totalTurnover">10000000</span> vnd</h1>
                             </div>
                         </div>
                         <div class="pagination_three">
