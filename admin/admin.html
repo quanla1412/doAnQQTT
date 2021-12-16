@@ -17,7 +17,7 @@
     <div id="main">
         <div class="frames">
             <div class="frames_photo">
-                <img src="../assets/img/default.png" alt="">
+                <img src="../assets/img/header_logo.png" alt="">
             </div>
             <div class="frames_selection">
                 <ul class="menu">
@@ -64,10 +64,10 @@
                             <div class="frames_search_bar">
                                 <span>Định dạng trang</span>
                                 <select name="" id="maxShow" onchange="changeMaxShow()">
-                                    <option value="4">4 page</option>
-                                    <option value="8" selected>8 page</option>
-                                    <option value="10">10 page</option>
-                                    <option value="12">12 page</option>
+                                    <option value="4">4 item</option>
+                                    <option value="8" selected>8 item</option>
+                                    <option value="10">10 item</option>
+                                    <option value="12">12 item</option>
                                 </select>
                             </div>
                             <div class="frames_table">
@@ -139,7 +139,7 @@
                                 <input id="searchtext" type="text" class="fullname"  oninput="search();">
                                 <label for="trademark" class="form_label2">PHÂN LOẠI</label>
                                 <select id="filter" name="" class="selection" onchange="search()">
-                                    <option value="all">TYPE</option>
+                                    <option value="all">ALL</option>
                                     <option value="coffee">CÀ PHÊ</option>
                                     <option value="soda">NƯỚC NGỌT</option>
                                     <option value="tea">TRÀ</option>
@@ -192,7 +192,7 @@
                                     </tr>
                                 </thead>
                                 <tbody id="bill-manager">
-                                    <tr>
+                                    <!-- <tr>
                                         <td rowspan="2">1</td>
                                         <td>CÀ PHÊ SỮA ĐÁ</td>
                                         <td>L</td>
@@ -204,13 +204,13 @@
                                             <button class="js_button_sucess">Hoàn Thành</button>
                                             <button class="js_button_fail">Hủy</button>
                                         </td>
-                                    </tr>
-                                    <tr>
+                                    </tr> -->
+                                    <!-- <tr>
                                         <td>CÀ PHÊ SỮA ĐÁ</td>
                                         <td>L</td>
                                         <td class="space"><p>akfjakfka</p></td>
                                         <td>1000</td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>
@@ -227,7 +227,7 @@
                             <span>Từ ngày</span>
                             <input id="formDateH"type="date" value="2021-12-10" onchange="showHistory()">
                             <span class="margin_product">Đến Ngày</span>
-                            <input id="toDateH" type="date" value="2021-12-16" onchange="showHistory()">
+                            <input id="toDateH" type="date" value="2021-12-20" onchange="showHistory()">
                         </div>
                         <div class="frames_history_product_table">
                             <table>
@@ -278,7 +278,7 @@
                                     <span>Từ ngày</span>
                                     <input type="date" id="formDate" value="2021-12-10" onchange="showTurnOver(1)">
                                     <span class="margin_product">Đến Ngày</span>
-                                    <input type="date" id="toDate" value="2021-12-16" onchange="showTurnOver(1)">
+                                    <input type="date" id="toDate" value="2021-12-20" onchange="showTurnOver(1)">
                             </div>
                             <div class="frames_manager_product_turnover_search_product">
                                     <span>Tìm kiếm</span>
@@ -333,12 +333,12 @@
         <div class="frames_modal">
             <div class="frames_modal_rim_icon">
                 <div class="frames_modal_icon" onclick="closeModal()">
-                    <i class="ti-close js_shut_down"></i>
+                    <i class="fas fa-times"></i>
                 </div>
             </div>
             <div class="frames_modal_photo">
                 <div class="variation_photo_one">
-                    <img src="../assets/img/4902102014281.jpg" alt="">
+                    <img id="editImg" src="../assets/img/4902102014281.jpg" alt="">
                 </div>
                 <div class="variation_photo_two">
                     <img src="../assets/img/default.png" alt="">

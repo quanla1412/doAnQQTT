@@ -78,7 +78,7 @@ function addProduct(){
     var atype = document.getElementById('add-type').value;
     var aprice = parseInt(document.getElementById('add-price').value);
     var aid = productArray[productArray.length-1]['id']+1;
-    var product = {id: aid, name: aname, price: aprice, type: atype, img: '../assets/img/default.png'};
+    var product = {id: aid, name: aname, price: aprice, type: atype, img: '../assets/img/header_logo.png'};
     productArray.push(product);
     localStorage.setItem('product',JSON.stringify(productArray));
     alert('Thêm thành công');
@@ -92,28 +92,33 @@ function checkAndAdd(){
     if(document.getElementById('add-name').value==""){
         alert('Chưa nhập tên sản phẩm');
         document.getElementById('add-name').focus();
+        document.getElementById('add-name').select();
         return;
     }
     if(document.getElementById('add-type').value=="none"){
         alert('Chưa chọn loại sản phẩm');
         document.getElementById('add-type').focus();
+        document.getElementById('add-type').select();
         return;
     }
     var price = document.getElementById('add-price').value;
     if(price==""){
         alert('Chưa nhập giá sản phẩm');
         document.getElementById('add-price').focus();
+        document.getElementById('add-price').select();
         return;
     }
     if(price.charAt(0)=='0'){            
         alert('Giá sản phẩm nhập sai');
         document.getElementById('add-price').focus();
+        document.getElementById('add-price').select();
         return;
     }
     for(var i=0;i<price.length;i++){
         if(price.charAt(i)<'0' || price.charAt(i)>'9'){            
             alert('Giá sản phẩm nhập sai');
             document.getElementById('add-price').focus();
+            document.getElementById('add-price').select();
             return;
         }
     }
@@ -122,7 +127,7 @@ function checkAndAdd(){
 }
 
 function erase(pos){
-    var check = confirm("Bạn có muốn xóa sản phẩm " + productArray[pos]['name'] + "không?")
+    var check = confirm("Bạn có muốn xóa sản phẩm " + productArray[pos]['name'] + " không?")
     if(check==false)    return;
     productArray.splice(pos,1);
     localStorage.setItem('product',JSON.stringify(productArray));
@@ -132,43 +137,49 @@ function erase(pos){
 
 function edit(cur){
     document.getElementById('modal').style.display = "flex";
+    document.getElementById('editImg').src=showArray[cur]['img'];
     document.getElementById('edit-name').defaultValue=showArray[cur]['name'];
     document.getElementById('edit-price').defaultValue=showArray[cur]['price'];
     document.getElementById(showArray[cur]['type']).selected="true";
-    editNow = showArray[cur]['id'];
+    editNow = cur;
 }
 
-function checkAndEdit(){    
-    cur = editNow;
+function checkAndEdit(){ 
+    cur = editNow;  
     if(document.getElementById('edit-name').value==""){
         alert('Chưa nhập tên sản phẩm');
         document.getElementById('edit-name').focus();
+        document.getElementById('edit-name').select();
         return;
     }
     if(document.getElementById('edit-type').value=="none"){
         alert('Chưa chọn loại sản phẩm');
         document.getElementById('edit-type').focus();
+        document.getElementById('edit-type').select();
         return;
     }
     var price = document.getElementById('edit-price').value;
     if(price==""){
         alert('Chưa nhập giá sản phẩm');
         document.getElementById('edit-price').focus();
+        document.getElementById('edit-price').select();
         return;
     }
     if(price.charAt(0)=='0'){            
         alert('Giá sản phẩm nhập sai');
         document.getElementById('edit-price').focus();
+        document.getElementById('edit-price').select();
         return;
     }
     for(var i=0;i<price.length;i++){
         if(price.charAt(i)<'0' || price.charAt(i)>'9'){            
             alert('Giá sản phẩm nhập sai');
             document.getElementById('edit-price').focus();
+            document.getElementById('edit-price').select();
             return;
         }
     }
-    var pid=showArray[cur]['id'];    
+    var pid=showArray[cur]['id']-1;  
     productArray[pid]['name'] = document.getElementById('edit-name').value;
     productArray[pid]['type'] = document.getElementById('edit-type').value;
     productArray[pid]['price'] = parseInt(document.getElementById('edit-price').value);
@@ -237,12 +248,15 @@ function changeMaxShow(){
 function showCurBill(){
     //Lay san pham
     if(localStorage.getItem('bill')===null) return;
-    var billArray = JSON.parse(localStorage.getItem('bill'));
+    var billArray = JSON.parse(localStorage.getItem('bill'));    
 
     //Show hoa don
     var s = "";
     var n = 0;
     for(var i=0;i<billArray.length;i++){
+        if(billArray[i]["size"]=='1')   billArray[i]["size"] = "S";
+        else if(billArray[i]["size"]=='2')   billArray[i]["size"] = "M";
+        else if(billArray[i]["size"]=='3')   billArray[i]["size"] = "L";
         if(n==0){
             n = billArray[i]['number'];
             s+="<tr><td rowspan="+n+">"+billArray[i]['idBill']+"</td>" + 
@@ -287,8 +301,12 @@ function addHistoryBill(bill){
 
     for(var i=0;i<billArray.length;i++){
         if(bill==billArray[i]['idBill']){
-            historyArray += billArray.splice(i,billArray[i]['number']);
-            break;
+            historyArray.push(billArray[i]);
+        }
+    }
+    for(var i=0;i<billArray.length;i++){
+        if(bill==billArray[i]['idBill']){
+            billArray.splice(i--,1);
         }
     }
     localStorage.setItem('bill',JSON.stringify(billArray));
@@ -300,7 +318,7 @@ function addHistoryBill(bill){
 //Quan ly doanh thu
 var maxShowTurnover = 8;
 function compareDate(a,b){
-    return a['date']>b['date'];
+    return a['date']<b['date'];
 }
 
 function checkType(array,id,type){
@@ -322,6 +340,9 @@ function convertTime(str){
     return date.getDate() + "\\" + (date.getMonth()+1) + "\\" + date.getFullYear();
 }
 
+
+
+
 function showTurnOver(cur){
     cur--;
     var totalTurnover = 0;
@@ -336,7 +357,6 @@ function showTurnOver(cur){
         var idItem = turnoverArray[i]['productId'];
         var curDate = new Date(turnoverArray[i]['date']);
         if(curDate<formDate || curDate>toDate || turnoverArray[i]['name'].indexOf(search)==-1 || checkType(productArray,idItem,type)){
-            
             turnoverArray.splice(i--,1);
         }
     }
@@ -375,6 +395,7 @@ function changeMaxShowTurnover(){
     maxShowTurnover = parseInt(document.getElementById('maxShowTurnover').value);
     showTurnOver(1);
 }
+
 
 // lich su don hang
 function showHistory(){

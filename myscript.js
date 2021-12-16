@@ -15,18 +15,18 @@ var totalPrice=0;
 function createProduct(){
     if(localStorage.getItem('product')===null){
         productArray = [
-            {id: 1, name: 'trà đá', price: 10000, type:'tea', img: '../assets/img/default.png'},
-            {id: 2, name: 'trà chanh', price: 10000, type:'tea', img: '../assets/img/default.png'},
-            {id: 3, name: 'trà đào', price: 10000, type:'tea', img: '../assets/img/default.png'},
-            {id: 4, name: 'trà tắc', price: 10000, type:'tea', img: '../assets/img/default.png'},
-            {id: 5, name: 'cà phê đen', price: 10000, type:'coffee', img: '../assets/img/default.png'},
-            {id: 6, name: 'cà phê sữa', price: 10000, type:'coffee', img: '../assets/img/default.png'},
-            {id: 7, name: 'cà phê dừa', price: 10000, type:'coffee', img: '../assets/img/default.png'},
-            {id: 8, name: 'cà phê chồn', price: 10000, type:'coffee', img: '../assets/img/default.png'},
-            {id: 9, name: 'coca cola', price: 10000, type:'soda', img: '../assets/img/default.png'},
-            {id: 10, name: 'pepsi', price: 10000, type:'soda', img: '../assets/img/default.png'},
-            {id: 11, name: 'fanta', price: 10000, type:'soda', img: '../assets/img/default.png'},
-            {id: 12, name: 'sprite', price: 10000, type:'soda', img: '../assets/img/default.png'}
+            {id: 1, name: 'trà đá', price: 10000, type:'tea', img: '../assets/img/product/TraDa.jpg'},
+            {id: 2, name: 'trà chanh', price: 20000, type:'tea', img: '../assets/img/product/TraChanh.jpg'},
+            {id: 3, name: 'trà đào', price: 15000, type:'tea', img: '../assets/img/product/TraDao.jpg'},
+            {id: 4, name: 'trà tắc', price: 16000, type:'tea', img: '../assets/img/product/TraTac.jpg'},
+            {id: 5, name: 'cà phê đen', price: 12000, type:'coffee', img: '../assets/img/product/CaPheDen.jpg'},
+            {id: 6, name: 'cà phê sữa', price: 15000, type:'coffee', img: '../assets/img/product/CaPheSua.jpg'},
+            {id: 7, name: 'cà phê dừa', price: 30000, type:'coffee', img: '../assets/img/product/CaPheDua.jpg'},
+            {id: 8, name: 'cà phê chồn', price: 26000, type:'coffee', img: '../assets/img/product/CaPheChon.jpg'},
+            {id: 9, name: 'coca cola', price: 10000, type:'soda', img: '../assets/img/product/CocaCola.jpg'},
+            {id: 10, name: 'pepsi', price: 11000, type:'soda', img: '../assets/img/product/Pepsi.jpg'},
+            {id: 11, name: 'fanta', price: 9000, type:'soda', img: '../assets/img/product/Fanta.jpg'},
+            {id: 12, name: 'sprite', price: 9500, type:'soda', img: '../assets/img/product/Sprite.jpg'}
         ];
         localStorage.setItem('product',JSON.stringify(productArray));
     } else {
@@ -91,12 +91,12 @@ window.onload = function(){
     reload(1);
 
     loadAccount();
-    var curUser = JSON.parse(localStorage.getItem('status'))['type'];
+    curUser = JSON.parse(localStorage.getItem('status'))['type'];
     nameUser = JSON.parse(localStorage.getItem('status'))['username'];
     changeHeader(curUser, nameUser);
 
     loadCart();
-    createHistoryBill();
+    if(localStorage.getItem('historyBill')===null)createHistoryBill();
 }
 
 function showProduct(cur){
@@ -173,7 +173,8 @@ function openOrderModal(cur) {
     quantity = 1;
     document.getElementById('curPrice').innerHTML = curPrice + ' VNĐ';
 
-    document.getElementById('size-'+size).style.borderColor='green';
+    document.getElementById('size-1').style.borderColor='green';
+    document.getElementById('size-3').style.borderColor='green';
     document.getElementById('size-2').style.borderColor='orange';
     size=2;
 
@@ -215,7 +216,7 @@ function buy(cur){
     if(check==false)    return;
     if(localStorage.getItem('cart')===null){
         var cartItem = [
-            {id: cur,name: showArray[cur]['name'], size: size, quantity: quantity, price: curPrice, comment: comment}
+            {id: cur+1,name: showArray[cur]['name'], size: size, quantity: quantity, price: curPrice, comment: comment}
         ];
     } else {
         var cartItem = JSON.parse(localStorage.getItem('cart'));
@@ -229,7 +230,7 @@ function buy(cur){
         }
         if(find==0) {
             cartItem.push(
-                {id: cur,name: showArray[cur]['name'], size: size, quantity: quantity, price: curPrice, comment: comment}
+                {id: cur+1,name: showArray[cur]['name'], size: size, quantity: quantity, price: curPrice, comment: comment}
             );
         }
     }
@@ -275,7 +276,12 @@ function login(){
             changeHeader(ac[i]['type'],ac[i]['username']);
             break;
         }
-        if(i==ac.length-1)  alert('Sai thông tin đăng nhập');
+        if(i==ac.length-1) { 
+            alert('Sai thông tin đăng nhập');
+            document.getElementById('log2').select();
+            document.getElementById('log2').focus();
+            return;
+        }
     }
     closeLogIn();
     window.location.href="";
@@ -302,36 +308,43 @@ function register(){
     if(rFullName.value == ""){
         alert('Vui lòng nhập họ tên');
         rFullName.focus();
+        rFullName.select();
         return;
     }
     if(rEmail.value == ""){
         alert('Vui lòng nhập email');
         rEmail.focus();
+        rEmail.select();
         return;
     }
     if(rNum.value == "" || rNum.value.indexOf(" ")!=-1){
         alert('Vui lòng nhập số điện thoại');
         rNum.focus();
+        rNum.select();
         return;
     }
     if(rUsername.value == "" || rUsername.value.indexOf(" ")!=-1){
         alert('Vui lòng nhập tên đăng nhập');
         rUsername.focus();
+        rUsername.select();
         return;
     }
     if(rPassword.value == ""){
         alert('Vui lòng nhập mật khẩu');
         rPassword.focus();
+        rPassword.select();
         return;
     }
     if(rRepassword.value == ""){
         alert('Vui lòng nhập lại mật khẩu');
         rRepassword.focus();
+        rRepassword.select();
         return;
     }
     if(rEmail.value.indexOf(" ")!==-1 || rEmail.value.indexOf("@")==-1) {        
         alert('Email không hợp lệ');
         rEmail.focus();
+        rEmail.select();
         return;
     }
     var checkNum=1;
@@ -341,18 +354,21 @@ function register(){
     if(checkNum==0 || rNum.value.length!=10){        
         alert('Số điện thoại không hợp lệ');
         rNum.focus();
+        rNum.select();
         return;
     }
     for(var i=0;i<dataAccount.length;i++){
         if(dataAccount[i]['username']==rUsername){    
             alert('Tên đăng nhập đã có người sử dụng');
             rUsername.focus();
+            rUsername.select();
             return;
         }   
     }
     if(rPassword.value != rRepassword.value){        
         alert('Mật khẩu nhập lại không trùng khớp');
-        rRepassword.focus();
+        rRepassword.focus();        
+        rRepassword.select();
         return;
     }
 
@@ -382,7 +398,7 @@ function loadCart() {
     totalPrice=0;
     if(localStorage.getItem('cart')!==null){
         for(var i=0;i<productCartList.length;i++){
-            var cartId = productCartList[i]['id'];
+            var cartId = productCartList[i]['id']-1;
             var sizeChar;
             if(productCartList[i]["size"]==1)   sizeChar = "S";
             else if(productCartList[i]["size"]==2)   sizeChar = "M";
@@ -438,7 +454,7 @@ function decQuanCart(cur) {
 
 function deleteCartItem(cur) {    
     var productCartList = JSON.parse(localStorage.getItem('cart'));
-    var check = confirm("Bạn có muốn xóa sản phẩm " + productCartList[cur]['name'] + "không?")
+    var check = confirm("Bạn có muốn xóa sản phẩm " + productCartList[cur]['name'] + " không?")
     if(check==false)    return;
     productCartList.splice(cur,1);    
     localStorage.setItem('cart',JSON.stringify(productCartList));
@@ -446,7 +462,11 @@ function deleteCartItem(cur) {
     alert('Xóa thành công');
 }
 
-function deleteAllCart(){        
+function deleteAllCart(){   
+    if(statusUser=="none"){
+        alert('Vui lòng đăng nhập');
+        return;
+    }     
     var productCartList = JSON.parse(localStorage.getItem('cart'));
     var check = confirm("Bạn có muốn xóa hết sản phẩm không?")
     if(check==false)    return;
@@ -457,6 +477,10 @@ function deleteAllCart(){
 }
 
 function successOrder() {
+    if(statusUser=="none"){
+        alert('Vui lòng đăng nhập');
+        return;
+    }
     if(document.getElementById('addressCart').value==""){
         alert('Vui lòng nhập địa chỉ');
         document.getElementById('addressCart').focus();
@@ -469,15 +493,15 @@ function successOrder() {
     //Xu ly
     var billArray = [];
     var idBill = 1;
-    if(localStorage.getItem('bill')!==null && localStorage.getItem('bill')!=null){
+    if(localStorage.getItem('bill')!==null && localStorage.getItem('bill')!=null && JSON.parse(localStorage.getItem('bill')).length.length>0){
         var billArray = JSON.parse(localStorage.getItem('bill'));
         idBill = billArray[billArray.length-1]['idBill']+1;
     } 
     for(var i=0;i<productCartList.length;i++){
         billArray.push({
-            idBill : idBill, productId : productCartList[i]['cur'], name:  productCartList[i]['name'], size: productCartList[i]['size'],
+            idBill : idBill, productId : productCartList[i]['id'], name:  productCartList[i]['name'], size: productCartList[i]['size'],
             quantity: productCartList[i]['quantity'], price: productCartList[i]['price'], comment: productCartList[i]['comment'], 
-            date: Date.now(), client: nameUser, address: document.getElementById('addressCart').value, totalPrice: totalPrice,number:productCartList.length , status: "False"
+            date: new Date("2021-12-16"), client: nameUser, address: document.getElementById('addressCart').value, totalPrice: totalPrice,number:productCartList.length , status: "False"
         });
     }
     localStorage.setItem('bill',JSON.stringify(billArray));

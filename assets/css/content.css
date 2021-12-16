@@ -123,6 +123,10 @@
     display: none;
 }
 
+div#modal-order {
+    margin-bottom: 0;
+}
+
 .modal-order.open {
     display:flex;
 }

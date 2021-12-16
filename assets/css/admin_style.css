@@ -412,6 +412,7 @@ table tbody .js_button_fix{
     flex-wrap: wrap;
     background-color: var(--color-two--);
     height: 100%;
+    display: none;
 }
 .frames_history_product_content{
     padding: 40px 40px 40px;
@@ -694,6 +695,10 @@ table tbody .js_button_fix{
 .frames_modal_button .button3:hover{
     background-color: var(--color-six--);
     color: var(--color-two--);
+}
+
+i.fas.fa-times {
+    font-size: 20px;
 }
 /* ******************************************* */
 /************************** responsive***************** */
