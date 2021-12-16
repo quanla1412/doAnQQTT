@@ -540,8 +540,8 @@ function search(){
         navPage(curType);
     }
     else {
-        for(var i=0;i<showArray.length;i++){
-            if(showArray[i]['name'].indexOf(s)!=-1)  temp.push(showArray[i]);
+        for(var i=0;i<productArray.length;i++){
+            if(productArray[i]['name'].indexOf(s)!=-1)  temp.push(productArray[i]);
         }
         showArray=temp;
         reload(1);
